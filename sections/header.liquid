@@ -1,0 +1,94 @@
+{% comment %}
+  Header section with navigation
+{% endcomment %}
+
+<header class="header">
+  <!-- Announcement Bar -->
+  {% if section.settings.show_announcement %}
+    <div class="announcement-bar bg-primary text-white text-center py-2">
+      <div class="container">
+        {{ section.settings.announcement_text }}
+      </div>
+    </div>
+  {% endif %}
+  
+  <!-- Main Header -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <div class="container">
+      <!-- Logo -->
+      <a class="navbar-brand" href="{{ routes.root_url }}">
+        {% if section.settings.logo != blank %}
+          {{ section.settings.logo | image_url: width: 200 | image_tag: alt: shop.name, class: 'logo-img' }}
+        {% else %}
+          <span class="logo-text">{{ shop.name }}</span>
+        {% endif %}
+      </a>
+      
+      <!-- Mobile Menu Toggle -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <!-- Navigation Menu -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          {% for link in linklists.main-menu.links %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ link.url }}">{{ link.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+        
+        <!-- Header Actions -->
+        <div class="header-actions d-flex align-items-center">
+          <!-- Search -->
+          <button class="btn btn-link" data-bs-toggle="modal" data-bs-target="#searchModal">
+            <i class="fas fa-search"></i>
+          </button>
+          
+          <!-- Account -->
+          <a href="{{ routes.account_url }}" class="btn btn-link">
+            <i class="fas fa-user"></i>
+          </a>
+          
+          <!-- Wishlist -->
+          <a href="#" class="btn btn-link">
+            <i class="fas fa-heart"></i>
+            <span class="wishlist-count">0</span>
+          </a>
+          
+          <!-- Cart -->
+          <a href="{{ routes.cart_url }}" class="btn btn-link cart-link">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count">{{ cart.item_count }}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_announcement",
+      "label": "Show announcement bar",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "label": "Announcement text",
+      "default": "Free shipping on orders over $50!"
+    }
+  ]
+}
+{% endschema %}

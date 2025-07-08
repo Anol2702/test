@@ -1,0 +1,57 @@
+{% comment %}
+  Product detail page template
+{% endcomment %}
+
+<div class="container py-4">
+  <nav aria-label="breadcrumb">
+    {% render 'breadcrumb' %}
+  </nav>
+  
+  <div class="row">
+    <!-- Product Images -->
+    <div class="col-lg-6">
+      {% render 'product-media', product: product %}
+    </div>
+    
+    <!-- Product Information -->
+    <div class="col-lg-6">
+      <div class="product-info">
+        <h1 class="product-title">{{ product.title }}</h1>
+        
+        <div class="product-price mb-3">
+          {% render 'price', product: product, use_variant: true, show_badges: true %}
+        </div>
+        
+        <div class="product-form">
+          {% render 'product-form', product: product %}
+        </div>
+        
+        {% if product.description != blank %}
+          <div class="product-description mt-4">
+            {{ product.description }}
+          </div>
+        {% endif %}
+        
+        <div class="product-actions mt-4">
+          {% render 'product-actions', product: product %}
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Product Tabs -->
+  <div class="row mt-5">
+    <div class="col-12">
+      {% render 'product-tabs', product: product %}
+    </div>
+  </div>
+  
+  <!-- Related Products -->
+  {% if recommendations.products_count > 0 %}
+    <div class="row mt-5">
+      <div class="col-12">
+        {% render 'related-products', product_recommendations: recommendations %}
+      </div>
+    </div>
+  {% endif %}
+</div>

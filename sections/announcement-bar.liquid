@@ -1,0 +1,73 @@
+{% comment %}
+  Announcement bar section
+{% endcomment %}
+
+{% if section.settings.show_announcement %}
+  <div class="announcement-bar bg-{{ section.settings.color_scheme }} text-white text-center py-2">
+    <div class="container">
+      <div class="announcement-content">
+        {% if section.settings.announcement_icon != blank %}
+          <i class="{{ section.settings.announcement_icon }} me-2"></i>
+        {% endif %}
+        {{ section.settings.announcement_text }}
+        {% if section.settings.announcement_link != blank %}
+          <a href="{{ section.settings.announcement_link }}" class="text-white ms-2">
+            {{ section.settings.announcement_link_text }}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Announcement Bar",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_announcement",
+      "label": "Show announcement bar",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "label": "Announcement text",
+      "default": "Free shipping on orders over $50!"
+    },
+    {
+      "type": "text",
+      "id": "announcement_icon",
+      "label": "Font Awesome icon class",
+      "info": "e.g., fas fa-truck, fas fa-gift"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "options": [
+        {"value": "primary", "label": "Primary"},
+        {"value": "secondary", "label": "Secondary"},
+        {"value": "success", "label": "Success"},
+        {"value": "danger", "label": "Danger"},
+        {"value": "warning", "label": "Warning"},
+        {"value": "info", "label": "Info"},
+        {"value": "dark", "label": "Dark"}
+      ],
+      "default": "primary"
+    },
+    {
+      "type": "url",
+      "id": "announcement_link",
+      "label": "Announcement link"
+    },
+    {
+      "type": "text",
+      "id": "announcement_link_text",
+      "label": "Link text",
+      "default": "Shop Now"
+    }
+  ]
+}
+{% endschema %}

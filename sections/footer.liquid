@@ -1,0 +1,128 @@
+{% comment %}
+  Footer section
+{% endcomment %}
+
+<footer class="footer bg-dark text-white py-5">
+  <div class="container">
+    <div class="row">
+      <!-- Company Info -->
+      <div class="col-lg-3 col-md-6 mb-4">
+        <h5>{{ section.settings.footer_title | default: shop.name }}</h5>
+        <p>{{ section.settings.footer_description }}</p>
+        
+        <!-- Social Media -->
+        <div class="social-links">
+          {% if section.settings.facebook_url != blank %}
+            <a href="{{ section.settings.facebook_url }}" class="social-link me-2">
+              <i class="fab fa-facebook"></i>
+            </a>
+          {% endif %}
+          {% if section.settings.instagram_url != blank %}
+            <a href="{{ section.settings.instagram_url }}" class="social-link me-2">
+              <i class="fab fa-instagram"></i>
+            </a>
+          {% endif %}
+          {% if section.settings.twitter_url != blank %}
+            <a href="{{ section.settings.twitter_url }}" class="social-link me-2">
+              <i class="fab fa-twitter"></i>
+            </a>
+          {% endif %}
+        </div>
+      </div>
+      
+      <!-- Quick Links -->
+      <div class="col-lg-2 col-md-6 mb-4">
+        <h6>Quick Links</h6>
+        <ul class="list-unstyled">
+          {% for link in linklists.footer.links %}
+            <li><a href="{{ link.url }}" class="text-light">{{ link.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      
+      <!-- Customer Service -->
+      <div class="col-lg-2 col-md-6 mb-4">
+        <h6>Customer Service</h6>
+        <ul class="list-unstyled">
+          <li><a href="/pages/contact" class="text-light">Contact Us</a></li>
+          <li><a href="/pages/shipping" class="text-light">Shipping Info</a></li>
+          <li><a href="/pages/returns" class="text-light">Returns</a></li>
+          <li><a href="/pages/faq" class="text-light">FAQ</a></li>
+        </ul>
+      </div>
+      
+      <!-- Categories -->
+      <div class="col-lg-2 col-md-6 mb-4">
+        <h6>Categories</h6>
+        <ul class="list-unstyled">
+          {% for collection in collections limit: 5 %}
+            <li><a href="{{ collection.url }}" class="text-light">{{ collection.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      
+      <!-- Newsletter -->
+      <div class="col-lg-3 col-md-12 mb-4">
+        <h6>Newsletter</h6>
+        <p>Subscribe to get updates on new products and offers</p>
+        <form class="newsletter-form">
+          <div class="input-group">
+            <input type="email" class="form-control" placeholder="Your email" required>
+            <button class="btn btn-primary" type="submit">Subscribe</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    
+    <hr class="my-4">
+    
+    <!-- Bottom Footer -->
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <p class="mb-0">&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.</p>
+      </div>
+      <div class="col-md-6 text-end">
+        <div class="payment-methods">
+          <span class="me-2">We accept:</span>
+          <i class="fab fa-cc-visa me-1"></i>
+          <i class="fab fa-cc-mastercard me-1"></i>
+          <i class="fab fa-cc-paypal me-1"></i>
+          <i class="fab fa-cc-apple-pay"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "footer_title",
+      "label": "Footer title"
+    },
+    {
+      "type": "textarea",
+      "id": "footer_description",
+      "label": "Footer description"
+    },
+    {
+      "type": "url",
+      "id": "facebook_url",
+      "label": "Facebook URL"
+    },
+    {
+      "type": "url",
+      "id": "instagram_url",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "url",
+      "id": "twitter_url",
+      "label": "Twitter URL"
+    }
+  ]
+}
+{% endschema %}

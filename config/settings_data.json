@@ -1,0 +1,65 @@
+{
+  "name": "Grocery Store Theme",
+  "version": "1.0.0",
+  "theme_author": "Custom Theme",
+  "theme_documentation_url": "",
+  "theme_support_url": "",
+  "current": "1.0.0",
+  "sections": {
+    "header": {
+      "type": "header",
+      "settings": {
+        "logo": "",
+        "show_announcement": false,
+        "announcement_text": "Free shipping on orders over $50!"
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "settings": {
+        "footer_title": "",
+        "footer_description": "",
+        "facebook_url": "",
+        "instagram_url": "",
+        "twitter_url": ""
+      }
+    },
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "settings": {
+        "show_announcement": true,
+        "announcement_text": "🚚 Free shipping on orders over $50!",
+        "announcement_icon": "fas fa-truck",
+        "color_scheme": "primary",
+        "announcement_link": "/collections/all",
+        "announcement_link_text": "Shop Now"
+      }
+    }
+  },
+  "content_for_index": [
+    {
+      "type": "hero-banner",
+      "settings": {}
+    },
+    {
+      "type": "featured-categories",
+      "settings": {}
+    },
+    {
+      "type": "featured-products",
+      "settings": {}
+    },
+    {
+      "type": "about-us",
+      "settings": {}
+    },
+    {
+      "type": "testimonials",
+      "settings": {}
+    },
+    {
+      "type": "newsletter",
+      "settings": {}
+    }
+  ]
+}

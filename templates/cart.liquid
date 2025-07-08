@@ -1,0 +1,36 @@
+{% comment %}
+  Cart page template
+{% endcomment %}
+
+<div class="container py-4">
+  <h1 class="page-title">{{ 'sections.cart.title' | t }}</h1>
+  
+  <div class="cart-wrapper">
+    {% if cart == empty %}
+      <div class="cart-empty text-center py-5">
+        <i class="fas fa-shopping-cart fa-3x mb-3 text-muted"></i>
+        <h2>{{ 'sections.cart.empty' | t }}</h2>
+        <p>{{ 'sections.cart.empty_text' | t }}</p>
+        <a href="{{ routes.all_products_collection_url }}" class="btn btn-primary">
+          {{ 'general.continue_shopping' | t }}
+        </a>
+      </div>
+    {% else %}
+      <form action="{{ routes.cart_url }}" method="post" novalidate class="cart">
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="cart-items">
+              {% render 'cart-items' %}
+            </div>
+          </div>
+          
+          <div class="col-lg-4">
+            <div class="cart-summary">
+              {% render 'cart-summary' %}
+            </div>
+          </div>
+        </div>
+      </form>
+    {% endif %}
+  </div>
+</div>
